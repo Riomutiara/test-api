@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<script
+  src="https://code.jquery.com/jquery-3.6.0.min.js"
+  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+  crossorigin="anonymous"
+></script>
+<html>
+  <body>
+    <audio id="airport_sound">
+      <source src="new/in.wav" />
+    </audio>
+    <audio id="nomor_antrian_sound">
+      <source src="new/nomor-urut.mp3" />
+    </audio>
+    <audio id="angka_sound">
+      <source src="new/sepuluh.mp3" />
+    </audio>
+    <audio id="ke_loket_sound">
+      <source src="new/loket.mp3" />
+    </audio>
+    <audio id="tujuan_sound">
+      <source src="new/7.mp3" />
+    </audio>
+
+    <p>Click the buttons to play or pause the audio.</p>
+
+    <input type="text" id="airport_text" value="1" />
+    <input type="text" id="nomor_antrian_text" value="1" />
+    <input type="text" id="angka_text" value="1" />
+    <input type="text" id="ke_loket_text" value="1" />
+    <input type="text" id="tujuan_text" value="1" />
+
+    <!-- <button onclick="playAudio()" type="button">Play Audio</button> -->
+    <button id="button_click" type="button">Play Audio</button>
+    <button onclick="pauseAudio()" type="button">Pause Audio</button>
+
+    <script>
+      var airport = document.getElementById("airport");
+      var nomor_antrian = document.getElementById("nomor_antrian");
+      var airport_text = $("#airport_text").val();
+      var nomor_antrian_text = $("#nomor_antrian_text").val();
+      var angka_text = $("#angka_text").val();
+      var ke_loket_text = $("#ke_loket_text").val();
+      var tujuan_text = $("#tujuan_text").val();
+
+      $(document).ready(function () {
+        $("#button_click").on("click", function () {
+          if (airport_text == 1) {
+            airport_sound.play();
+          }
+          setTimeout(() => {
+            if (nomor_antrian_text == 1) {
+              nomor_antrian_sound.play();
+            }
+          }, 2000);
+          setTimeout(() => {
+            if (angka_text == 1) {
+                angka_sound.play();
+            }
+          }, 3000);
+          setTimeout(() => {
+            if (ke_loket_text == 1) {
+                ke_loket_sound.play();
+            }
+          }, 4000);
+          setTimeout(() => {
+            if (tujuan_text == 1) {
+                tujuan_sound.play();
+            }
+          }, 5000);
+        //   if (nomor_antrian_text == 1) {
+        //     nomor_antrian_sound.play();
+        //   }
+          //   if (angka_text == 1) {
+          //     setTimeout(() => {  angka_sound.play(); }, 2000);
+          //   }
+          //   if (ke_loket_text == 1) {
+          //     setTimeout(() => {  ke_loket_sound.play(); }, 2000);
+          //   }
+        });
+      });
+      function playAudio() {
+        if (airport_text == 1) {
+          airport.play();
+        }
+        if (nomor_antrian_text == 1) {
+          nomor_antrian.play();
+        }
+        // switch (airport_text == 1) {
+        //     airport.play():
+        //     // airport.play();
+        //         break;
+
+        //     default:
+        //         break;
+        // }
+      }
+
+      function pauseAudio() {
+        x.pause();
+      }
+    </script>
+  </body>
+</html>
