@@ -1,25 +1,91 @@
 <div class="container">
   <div class="row mt-3 justify-content-center">
     <div class="col-md-8">
-      <h2 class="text-center">BPJS API</h2>
-      <input type="text" name="consID" id="consID">
+      <h2 class="text-center">VClaim</h2>
+      <!-- <input type="text" name="consID" id="consID">
       <input type="text" name="Timestamp" id="Timestamp">
       <input type="text" name="Signature" id="Signature">
-      <input type="text" name="Authorization" id="Authorization">
+      <input type="text" name="Authorization" id="Authorization"> -->
       <div class="input-group mb-3">
-        <input type="text" class="form-control" placeholder="Cari No. Peserta..." id="search-input" />
-        <button class="btn btn-success" type="button" id="search-button">
-          Cari
+        <input type="text" class="form-control" placeholder="Masukkan nomor peserta BPJS..." id="search_input" name="search_input" />
+        <button class="btn btn-success" type="button" id="search_button">
+          Cari Nomor Kepesertaan
         </button>
       </div>
+
+      <div class="container">
+        <input type="text" class="form-control" id="nama_peserta" name="nama_peserta" />
+        <!-- Peserta : <p id="nik_peserta"></p> <br>
+        Tanggal Lahir : <p id="tanggal_lahir"></p> <br>
+        Status Peserta :<p id="status_peserta"></p> -->
+      </div>
+
+
+      <div class="row mt-3 justify-content-center" id="movie-list"></div>
+
     </div>
   </div>
   <hr />
   <div class="row mt-3 justify-content-center" id="movie-list"></div>
 </div>
 
-
 <script>
+  $(document).ready(function() {
+    $('#search_button').on('click', function() {
+      var input = $('#search_input').val();
+
+      $.ajax({
+        url: '<?= base_url(); ?>vclaim/cekKartuPeserta',
+        method: 'POST',
+        data: {
+          input: input
+        },
+        dataType: 'JSON',
+        success: function(data) {
+          console.log(data);
+          // let res = data.metaData;
+          // $.each(res, function(data){
+          //   $('#nama_peserta').val(data.message);
+
+          // });
+          // $('#nik_peserta').text(data.nik);
+          // $('#tanggal_lahir').text(data.tglLahir);
+          // $('#status_peserta').text(data.statusPeserta);
+          // $("#detail_pasien").append(
+          //   `
+          //   <ul class="list-group list-group-flush">
+          //     <li class="list-group-item">` + data.nama + `</li>
+          //     <li class="list-group-item">` + data.nik + `</li>
+          //     <li class="list-group-item">` + data.tglLahir + `</li>
+          //     <li class="list-group-item">` + data.statusPeserta + `</li>
+          //   </ul> 
+          //   `,
+          // );
+        }
+      })
+    })
+  })
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <script>
   $(document).ready(function() {
 
     $.ajax({
@@ -69,7 +135,7 @@
       // var Authorization = "wMk5+f1u4qBwZr2wxzc9o+Q6pVr7OSvoHk\/cLRAxdt8=";
 
       $.ajax({
-        url: 'https://new-api.bpjs-kesehatan.go.id:8080/new-vclaim-rest/',
+        url: 'https://dvlp.bpjs-kesehatan.go.id/vclaim-rest-1.1',
         type: "GET",
         dataType: "JSON",
         headers: {
@@ -89,4 +155,4 @@
 
 
   })
-</script>
+</script> -->

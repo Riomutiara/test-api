@@ -11,8 +11,8 @@ function searchMovie() {
     },
     success: function (data) {
       if (data.Response == "True") {
+        // console.log(data);
         let movies = data.Search;
-        // console.log(movies);
         $.each(movies, function (i, data) {
           $("#movie-list").append(
             `
