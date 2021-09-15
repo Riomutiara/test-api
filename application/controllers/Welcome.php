@@ -44,6 +44,7 @@ class Welcome extends CI_Controller
 		// echo json_encode($headers);
 
         echo json_encode($headers);
+        // echo json_encode($headers[$data]);
 	}
 
 	public function bpjs()

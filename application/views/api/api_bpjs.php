@@ -28,7 +28,7 @@
         success: function(data) {
           console.log(data);
           // let data = data.
-          // $('#consID').val(data.data);
+          $('#consID').val(data);
         },
       });
 
@@ -63,20 +63,17 @@
     // //$hasil = json_encode($headers);
     // // echo json_encode($headers);
     $("#search-button").on("click", function() {
-      var consID = "5231";
-      var Timestamp = "1631610150";
-      var Signature = "CkEzkzO+CkEzkzO+5McQ6HNLA9cySldbHfrwSnYcB3IHR2AJzYs=";
-      var Authorization = "wMk5+f1u4qBwZr2wxzc9o+Q6pVr7OSvoHk\/cLRAxdt8=";
+      var consID = $('#consID').val();
+      // var Timestamp = "1631610150";
+      // var Signature = "CkEzkzO+CkEzkzO+5McQ6HNLA9cySldbHfrwSnYcB3IHR2AJzYs=";
+      // var Authorization = "wMk5+f1u4qBwZr2wxzc9o+Q6pVr7OSvoHk\/cLRAxdt8=";
 
       $.ajax({
         url: 'https://new-api.bpjs-kesehatan.go.id:8080/new-vclaim-rest/',
         type: "GET",
         dataType: "JSON",
         headers: {
-          "X-cons-id": consID,
-          "X-Timestamp": Timestamp,
-          "X-Signature": Signature,
-          "X-Authorization": Authorization
+          consID
         },
         success: function(data) {
           console.log(data);
