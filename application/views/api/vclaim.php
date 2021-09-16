@@ -47,7 +47,6 @@
         },
         dataType: 'JSON',
         success: function(data) {
-          // console.log(data);
           if (data.metaData['code'] == "200") {
             let peserta = data.response['peserta'];
             let status = peserta['statusPeserta'];
