@@ -77,8 +77,15 @@
 
     <!-- Huruf -->
     <input type="text" id="text_19" value="A">
-    
     <hr>
+
+    <input type="text" id="parameter_antrian" placeholder="parameter_antrian">
+    <input type="text" id="parameter_1" placeholder="parameter_1">
+    <input type="text" id="parameter_2" placeholder="parameter_2">
+    <input type="text" id="parameter_3" placeholder="parameter_3">
+    <input type="text" id="parameter_loket" placeholder="parameter_loket">
+    
+    
     <p>Klik tombol panggil</p>
     <br>
 
