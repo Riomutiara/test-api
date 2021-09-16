@@ -12,12 +12,16 @@
           Cari Nomor Kepesertaan
         </button>
       </div>
+      <br>
+      <!-- 0001769725541 Rio -->
+      <!-- 0000024374856 Bebby -->
 
       <div class="container">
-        <input type="text" class="form-control" id="nama_peserta" name="nama_peserta" />
-        <!-- Peserta : <p id="nik_peserta"></p> <br>
-        Tanggal Lahir : <p id="tanggal_lahir"></p> <br>
-        Status Peserta :<p id="status_peserta"></p> -->
+        <strong>Nama</strong> : <p id="nama_peserta"></p>
+        <strong>NIK</strong> : <p id="nik_peserta"></p>
+        <strong>Tgl. Lahir</strong> : <p id="tanggal_lahir"></p>
+        <strong>Status</strong> :<p id="status_peserta" class="text-danger"></p>
+        <strong>Jenis Peserta</strong> :<p id="jenis_peserta"></p>
       </div>
 
 
@@ -28,6 +32,7 @@
   <hr />
   <div class="row mt-3 justify-content-center" id="movie-list"></div>
 </div>
+
 
 <script>
   $(document).ready(function() {
@@ -42,25 +47,20 @@
         },
         dataType: 'JSON',
         success: function(data) {
-          console.log(data);
-          // let res = data.metaData;
-          // $.each(res, function(data){
-          //   $('#nama_peserta').val(data.message);
-
-          // });
-          // $('#nik_peserta').text(data.nik);
-          // $('#tanggal_lahir').text(data.tglLahir);
-          // $('#status_peserta').text(data.statusPeserta);
-          // $("#detail_pasien").append(
-          //   `
-          //   <ul class="list-group list-group-flush">
-          //     <li class="list-group-item">` + data.nama + `</li>
-          //     <li class="list-group-item">` + data.nik + `</li>
-          //     <li class="list-group-item">` + data.tglLahir + `</li>
-          //     <li class="list-group-item">` + data.statusPeserta + `</li>
-          //   </ul> 
-          //   `,
-          // );
+          // console.log(data);
+          if (data.metaData['code'] == "200") {
+            let peserta = data.response['peserta'];
+            let status = peserta['statusPeserta'];
+            let jenis = peserta['jenisPeserta'];
+            console.log(peserta);
+            $('#nama_peserta').text(peserta['nama']);
+            $('#nik_peserta').text(peserta['nik']);
+            $('#tanggal_lahir').text(peserta['tglLahir']);
+            $('#status_peserta').text(status['keterangan']);
+            $('#jenis_peserta').text(jenis['keterangan']);
+          } else {
+            alert('Data Kepesertaan tidak ditemukan!')
+          }
         }
       })
     })

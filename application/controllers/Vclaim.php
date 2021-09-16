@@ -42,9 +42,29 @@ class Vclaim extends CI_Controller
 
 		curl_close($ch);
 
-	
+		// $resultarr = json_decode($content, true);
 
-		echo json_encode($content);
+		// $output = array();
+		// foreach ($resultarr as $row) {
+		// 	$output['response'] = $row->nama;
+		// }
+
+		echo $content;
+
+		// $resultarr = json_decode($content, true);
+		// if ($resultarr['metaData']['code'] == 200) {
+		// 	$response['kode'] = $resultarr['response']['peserta']['statusPeserta']['kode'];
+		// 	$response['keterangan'] = "<div class='alert alert-danger' role='alert'><strong>CODE : " . $resultarr['metaData']['code'] . "</strong> - Kartu <strong>" . $resultarr['response']['peserta']['statusPeserta']['keterangan'] . "</strong> Anda tidak bisa mendaftar dengan <strong>BPJS</strong> Silahkan mendaftar dengan cara bayar <strong>UMUM</strong></div>";
+		// 	header('Content-type: application/json');
+		// 	echo json_encode($response);
+		// } else {
+		// 	$response['kode'] = $resultarr['response']['peserta']['statusPeserta']['kode'];
+		// 	$response['keterangan'] = "<div class='alert alert-success' role='alert'><strong>CODE : " . $resultarr['metaData']['code'] . "</strong> - Kartu <strong>" . $resultarr['response']['peserta']['statusPeserta']['keterangan'] . "</strong> Dapat di gunakan</div>";
+		// 	header('Content-type: application/json');
+		// 	echo json_encode($response);
+		// }
+
+
 
 		// return $resultarr;
 
