@@ -1,21 +1,18 @@
 <div class="container">
   <div class="row mt-3 justify-content-center">
     <div class="col-md-8">
-      <h2 class="text-center">VClaim</h2>
-      <!-- <input type="text" name="consID" id="consID">
-      <input type="text" name="Timestamp" id="Timestamp">
-      <input type="text" name="Signature" id="Signature">
-      <input type="text" name="Authorization" id="Authorization"> -->
+      <h2 class="text-center">Cari Peserta</h2>
       <div class="input-group mb-3">
         <input type="text" class="form-control" placeholder="Masukkan nomor peserta BPJS..." id="search_input" name="search_input" />
         <button class="btn btn-success" type="button" id="search_button">
-          Cari Nomor Kepesertaan
+          Nomor BPJS
+        </button>
+        <input type="text" class="form-control" placeholder="Masukkan nomor NIK..." id="search_input3" name="search_input3" />
+        <button class="btn btn-success" type="button" id="search_button3">
+          Nomor NIK
         </button>
       </div>
       <br>
-      <!-- 0001769725541 Rio -->
-      <!-- 0000024374856 Bebby -->
-
       <div class="container">
         <strong>Nama</strong> : <p id="nama_peserta"></p>
         <strong>NIK</strong> : <p id="nik_peserta"></p>
@@ -23,10 +20,72 @@
         <strong>Status</strong> :<p id="status_peserta" class="text-danger"></p>
         <strong>Jenis Peserta</strong> :<p id="jenis_peserta"></p>
       </div>
+    </div>
+    <hr>
+    <div class="col-md-8">
+      <h2 class="text-center">Cari Rujukan</h2>
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="Masukkan nomor peserta BPJS..." id="search_input2" name="search_input2" />
+        <button class="btn btn-success" type="button" id="search_button2">
+          No BPJS
+        </button>
+        <input type="text" class="form-control" placeholder="Masukkan nomor peserta BPJS..." id="search_input4" name="search_input4" />
+        <button class="btn btn-success" type="button" id="search_button4">
+          No. Rujukan
+        </button>
+      </div>
+      <br>
+      <div class="container">
+        <strong>Nama</strong> : <p id="nama_peserta"></p>
+        <strong>NIK</strong> : <p id="nik_peserta"></p>
+        <strong>Tgl. Lahir</strong> : <p id="tanggal_lahir"></p>
+        <strong>Status</strong> :<p id="status_peserta" class="text-danger"></p>
+        <strong>Jenis Peserta</strong> :<p id="jenis_peserta"></p>
+      </div>
+    </div>
+    <hr>
+    <div class="col-md-8">
+      <h2 class="text-center">Monitoring Kunjungan</h2>
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="Masukkan nomor peserta BPJS..." id="search_input5" name="search_input5" />
+        <select class="custom-select rounded-0" id="search_input6" name="search_input6">
+          <option selected>Jenis Layanan</option>
+          <option value="1">Rawat Inap</option>
+          <option value="2">Rawat Jalan</option>
+        </select>
+        <button class="btn btn-success" type="button" id="search_button5">
+          Cari
+        </button>
+      </div>
+      <br>
+      <div class="container">
+        <strong>Nama</strong> : <p id="nama_peserta"></p>
+        <strong>NIK</strong> : <p id="nik_peserta"></p>
+        <strong>Tgl. Lahir</strong> : <p id="tanggal_lahir"></p>
+        <strong>Status</strong> :<p id="status_peserta" class="text-danger"></p>
+        <strong>Jenis Peserta</strong> :<p id="jenis_peserta"></p>
+      </div>
+    </div>
+    <hr>
+    <div class="col-md-8">
+      <h2 class="text-center">Histori Pelayanan</h2>
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="Masukkan nomor peserta BPJS..." id="search_input7" name="search_input7" />
+        <input type="text" class="form-control" placeholder="Tgl Mulai" id="search_input8" name="search_input8" />
+        <input type="text" class="form-control" placeholder="Tgl Akhir" id="search_input9" name="search_input9" />
 
-
-      <div class="row mt-3 justify-content-center" id="movie-list"></div>
-
+        <button class="btn btn-success" type="button" id="search_button7">
+          Cari
+        </button>
+      </div>
+      <br>
+      <div class="container">
+        <strong>Nama</strong> : <p id="nama_peserta"></p>
+        <strong>NIK</strong> : <p id="nik_peserta"></p>
+        <strong>Tgl. Lahir</strong> : <p id="tanggal_lahir"></p>
+        <strong>Status</strong> :<p id="status_peserta" class="text-danger"></p>
+        <strong>Jenis Peserta</strong> :<p id="jenis_peserta"></p>
+      </div>
     </div>
   </div>
   <hr />
@@ -40,7 +99,7 @@
       var input = $('#search_input').val();
 
       $.ajax({
-        url: '<?= base_url(); ?>vclaim/cekKartuPeserta',
+        url: '<?= base_url(); ?>vclaim/cekKartuPesertaBPJS',
         method: 'POST',
         data: {
           input: input
@@ -48,15 +107,161 @@
         dataType: 'JSON',
         success: function(data) {
           if (data.metaData['code'] == "200") {
-            let peserta = data.response['peserta'];
-            let status = peserta['statusPeserta'];
-            let jenis = peserta['jenisPeserta'];
-            console.log(peserta);
-            $('#nama_peserta').text(peserta['nama']);
-            $('#nik_peserta').text(peserta['nik']);
-            $('#tanggal_lahir').text(peserta['tglLahir']);
-            $('#status_peserta').text(status['keterangan']);
-            $('#jenis_peserta').text(jenis['keterangan']);
+            // let peserta = data.response['peserta'];
+            // let status = peserta['statusPeserta'];
+            // let jenis = peserta['jenisPeserta'];
+            console.log(data);
+            // $('#nama_peserta').text(peserta['nama']);
+            // $('#nik_peserta').text(peserta['nik']);
+            // $('#tanggal_lahir').text(peserta['tglLahir']);
+            // $('#status_peserta').text(status['keterangan']);
+            // $('#jenis_peserta').text(jenis['keterangan']);
+          } else {
+            alert('Data Kepesertaan tidak ditemukan!')
+          }
+        }
+      })
+    })
+
+    $('#search_button2').on('click', function() {
+      var input = $('#search_input2').val();
+
+      $.ajax({
+        url: '<?= base_url(); ?>vclaim/cariRujukanDenganNoBPJS',
+        method: 'POST',
+        data: {
+          input: input
+        },
+        dataType: 'JSON',
+        success: function(data) {
+          if (data.metaData['code'] == "200") {
+            // let peserta = data.response['peserta'];
+            // let status = peserta['statusPeserta'];
+            // let jenis = peserta['jenisPeserta'];
+            console.log(data);
+            // $('#nama_peserta').text(peserta['nama']);
+            // $('#nik_peserta').text(peserta['nik']);
+            // $('#tanggal_lahir').text(peserta['tglLahir']);
+            // $('#status_peserta').text(status['keterangan']);
+            // $('#jenis_peserta').text(jenis['keterangan']);
+          } else {
+            alert('Data Kepesertaan tidak ditemukan!')
+          }
+        }
+      })
+    })
+
+
+    $('#search_button3').on('click', function() {
+      var input = $('#search_input3').val();
+
+      $.ajax({
+        url: '<?= base_url(); ?>vclaim/cekKartuPesertaNIK',
+        method: 'POST',
+        data: {
+          input: input
+        },
+        dataType: 'JSON',
+        success: function(data) {
+          if (data.metaData['code'] == "200") {
+            // let peserta = data.response['peserta'];
+            // let status = peserta['statusPeserta'];
+            // let jenis = peserta['jenisPeserta'];
+            console.log(data);
+            // $('#nama_peserta').text(peserta['nama']);
+            // $('#nik_peserta').text(peserta['nik']);
+            // $('#tanggal_lahir').text(peserta['tglLahir']);
+            // $('#status_peserta').text(status['keterangan']);
+            // $('#jenis_peserta').text(jenis['keterangan']);
+          } else {
+            alert('Data Kepesertaan tidak ditemukan!')
+          }
+        }
+      })
+    })
+    $('#search_button4').on('click', function() {
+      var input = $('#search_input4').val();
+
+      $.ajax({
+        url: '<?= base_url(); ?>vclaim/cariRujukanDenganNoRujukan',
+        method: 'POST',
+        data: {
+          input: input
+        },
+        dataType: 'JSON',
+        success: function(data) {
+          if (data.metaData['code'] == "200") {
+            // let peserta = data.response['peserta'];
+            // let status = peserta['statusPeserta'];
+            // let jenis = peserta['jenisPeserta'];
+            console.log(data);
+            // $('#nama_peserta').text(peserta['nama']);
+            // $('#nik_peserta').text(peserta['nik']);
+            // $('#tanggal_lahir').text(peserta['tglLahir']);
+            // $('#status_peserta').text(status['keterangan']);
+            // $('#jenis_peserta').text(jenis['keterangan']);
+          } else {
+            alert('Data Kepesertaan tidak ditemukan!')
+          }
+        }
+      })
+    })
+
+    $('#search_button5').on('click', function() {
+      var tanggal = $('#search_input5').val();
+      var jenis = $('#search_input6').val();
+
+      $.ajax({
+        url: '<?= base_url(); ?>vclaim/monitoringDataKunjungan',
+        method: 'POST',
+        data: {
+          tanggal: tanggal,
+          jenis: jenis
+        },
+        dataType: 'JSON',
+        success: function(data) {
+          if (data.metaData['code'] == "200") {
+            // let peserta = data.response['peserta'];
+            // let status = peserta['statusPeserta'];
+            // let jenis = peserta['jenisPeserta'];
+            console.log(data);
+            // $('#nama_peserta').text(peserta['nama']);
+            // $('#nik_peserta').text(peserta['nik']);
+            // $('#tanggal_lahir').text(peserta['tglLahir']);
+            // $('#status_peserta').text(status['keterangan']);
+            // $('#jenis_peserta').text(jenis['keterangan']);
+          } else {
+            alert('Data Kepesertaan tidak ditemukan!')
+          }
+        }
+      })
+    })
+
+    $('#search_button7').on('click', function() {
+      var no_kartu = $('#search_input7').val();
+      var tgl_mulai = $('#search_input8').val();
+      var tgl_akhir = $('#search_input9').val();
+
+      $.ajax({
+        url: '<?= base_url(); ?>vclaim/monitoringHistoryPelayanan',
+        method: 'POST',
+        data: {
+          no_kartu: no_kartu,
+          tgl_mulai: tgl_mulai,
+          tgl_akhir: tgl_akhir
+        },
+        dataType: 'JSON',
+        success: function(data) {
+          if (data.metaData['code'] == "200") {
+            // let peserta = data.response['peserta'];
+            // let status = peserta['statusPeserta'];
+            // let jenis = peserta['jenisPeserta'];
+            console.log(data);
+            // $('#nama_peserta').text(peserta['nama']);
+            // $('#nik_peserta').text(peserta['nik']);
+            // $('#tanggal_lahir').text(peserta['tglLahir']);
+            // $('#status_peserta').text(status['keterangan']);
+            // $('#jenis_peserta').text(jenis['keterangan']);
           } else {
             alert('Data Kepesertaan tidak ditemukan!')
           }
