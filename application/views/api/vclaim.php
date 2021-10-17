@@ -163,11 +163,11 @@
         },
         dataType: 'JSON',
         success: function(data) {
+            console.log(data);
           if (data.metaData['code'] == "200") {
             // let peserta = data.response['peserta'];
             // let status = peserta['statusPeserta'];
             // let jenis = peserta['jenisPeserta'];
-            console.log(data);
             // $('#nama_peserta').text(peserta['nama']);
             // $('#nik_peserta').text(peserta['nik']);
             // $('#tanggal_lahir').text(peserta['tglLahir']);

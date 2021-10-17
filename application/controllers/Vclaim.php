@@ -48,6 +48,8 @@ class Vclaim extends CI_Controller
 	{
 		$data = "5231";
 		$secretKey = "7rA70A8D69";
+		// $data = "23396";
+		// $secretKey = "2uV7D5A77E";
 
 		date_default_timezone_set('UTC');
 		$tStamp = strval(time() - strtotime('1970-01-01 00:00:00'));
@@ -65,6 +67,7 @@ class Vclaim extends CI_Controller
 		$tgl = date('Y-m-d');
 
 		curl_setopt($ch, CURLOPT_URL, "https://new-api.bpjs-kesehatan.go.id:8080/new-vclaim-rest/Peserta/nik/" . $_POST['input'] . "/tglSEP/" . $tgl);
+		// curl_setopt($ch, CURLOPT_URL, "https://dvlp.bpjs-kesehatan.go.id/vclaim-rest-1.1/Peserta/nik/" . $_POST['input'] . "/tglSEP/" . $tgl);
 		curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 		curl_setopt($ch, CURLOPT_TIMEOUT, 3);
