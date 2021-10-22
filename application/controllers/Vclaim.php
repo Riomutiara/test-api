@@ -64,17 +64,12 @@ class Vclaim extends CI_Controller
 			'X-signature: ' . $encodedSignature . '',
 			'Content-Type: application/json',
 		];
-		$params = [
-			'X-cons-id: ' . $data . '',
-			'X-timestamp: ' . $tStamp . '',
-			'X-signature: ' . $encodedSignature . '',
-			'Content-Type: application/json',
-		];
+	
 		$tgl = date('Y-m-d');
 
 		curl_setopt($ch, CURLOPT_URL, "https://new-api.bpjs-kesehatan.go.id:8080/new-vclaim-rest/Peserta/nik/" . $_POST['input'] . "/tglSEP/" . $tgl);
 		// curl_setopt($ch, CURLOPT_URL, "https://dvlp.bpjs-kesehatan.go.id/vclaim-rest-1.1/Peserta/nik/" . $_POST['input'] . "/tglSEP/" . $tgl);
-		curl_setopt($ch, CURLOPT_HTTPHEADER, $params);
+		curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 		curl_setopt($ch, CURLOPT_TIMEOUT, 3);
 		curl_setopt($ch, CURLOPT_HTTPGET, 1);

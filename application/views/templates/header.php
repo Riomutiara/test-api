@@ -34,6 +34,7 @@
                     <a class="nav-link active" aria-current="page" href="<?= base_url(); ?>vclaim">BPJS API</a>
                     <a class="nav-link active" aria-current="page" href="<?= base_url(); ?>antrian">Antrian Admission</a>
                     <a class="nav-link active" aria-current="page" href="<?= base_url(); ?>crudcurl">CRUD CURL</a>
+                    <a class="nav-link active" aria-current="page" href="<?= base_url(); ?>wsantrian">WS ANtrian V.2</a>
                     <!-- <a class="nav-link" href="#">Features</a>
             <a class="nav-link" href="#">Pricing</a>
             <a class="nav-link disabled">Disabled</a> -->
