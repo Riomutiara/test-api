@@ -81,7 +81,7 @@
           if (data.metaData['code'] == "200") {
             console.log(data);
             var aaa = data.response;
-
+            setInterval(5000);
             $.ajax({
               url: "<?php echo base_url(); ?>vclaim/stringDecrypt",
               method: "POST",
