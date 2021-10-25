@@ -1,5 +1,4 @@
-
-    {
+{
         "description": "The CodeIgniter framework",
         "name": "codeigniter/framework",
         "type": "project",
@@ -24,7 +23,3 @@
             "phpunit/phpunit": "4.* || 5.*"
         }
     }
-    
-  
-    
-

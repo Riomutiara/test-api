@@ -13,8 +13,12 @@ class Vclaim extends CI_Controller
 
 	public function cekKartuPesertaBPJS()
 	{
-		$data = "5231";
-		$secretKey = "7rA70A8D69";
+		// $data = "5231";
+		// $secretKey = "7rA70A8D69";
+
+		// DEV
+		$data = "23396";
+		$secretKey = "2uV7D5A77E";
 
 		date_default_timezone_set('UTC');
 		$tStamp = strval(time() - strtotime('1970-01-01 00:00:00'));
@@ -31,7 +35,8 @@ class Vclaim extends CI_Controller
 		];
 		$tgl = date('Y-m-d');
 
-		curl_setopt($ch, CURLOPT_URL, "https://new-api.bpjs-kesehatan.go.id:8080/new-vclaim-rest/Peserta/nokartu/" . $_POST['input'] . "/tglSEP/" . $tgl);
+		// curl_setopt($ch, CURLOPT_URL, "https://new-api.bpjs-kesehatan.go.id:8080/new-vclaim-rest/Peserta/nokartu/" . $_POST['input'] . "/tglSEP/" . $tgl);
+		curl_setopt($ch, CURLOPT_URL, "https://dvlp.bpjs-kesehatan.go.id/vclaim-rest-1.1/Peserta/noKartu/" . $_POST['input'] . "/tglSEP/" . $tgl);
 		curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 		curl_setopt($ch, CURLOPT_TIMEOUT, 3);
@@ -46,16 +51,23 @@ class Vclaim extends CI_Controller
 
 	public function cekKartuPesertaNIK()
 	{
-		$data = "5231";
-		$secretKey = "7rA70A8D69";
-		// $data = "23396";
-		// $secretKey = "2uV7D5A77E";
+		// PRODUCTION
+		// $data = "5231";
+		// $secretKey = "7rA70A8D69";
+
+		// DEV
+		$data = "23396";
+		$secretKey = "2uV7D5A77E";
 
 		date_default_timezone_set('UTC');
 		$tStamp = strval(time() - strtotime('1970-01-01 00:00:00'));
 
 		$signature = hash_hmac('sha256', $data . "&" . $tStamp, $secretKey, true);
 		$encodedSignature = base64_encode($signature);
+
+
+
+
 
 		$ch = curl_init();
 		$headers = [
@@ -64,17 +76,12 @@ class Vclaim extends CI_Controller
 			'X-signature: ' . $encodedSignature . '',
 			'Content-Type: application/json',
 		];
-		$params = [
-			'X-cons-id: ' . $data . '',
-			'X-timestamp: ' . $tStamp . '',
-			'X-signature: ' . $encodedSignature . '',
-			'Content-Type: application/json',
-		];
+
 		$tgl = date('Y-m-d');
 
-		curl_setopt($ch, CURLOPT_URL, "https://new-api.bpjs-kesehatan.go.id:8080/new-vclaim-rest/Peserta/nik/" . $_POST['input'] . "/tglSEP/" . $tgl);
-		// curl_setopt($ch, CURLOPT_URL, "https://dvlp.bpjs-kesehatan.go.id/vclaim-rest-1.1/Peserta/nik/" . $_POST['input'] . "/tglSEP/" . $tgl);
-		curl_setopt($ch, CURLOPT_HTTPHEADER, $params);
+		// curl_setopt($ch, CURLOPT_URL, "https://new-api.bpjs-kesehatan.go.id:8080/new-vclaim-rest/Peserta/nik/" . $_POST['input'] . "/tglSEP/" . $tgl);
+		curl_setopt($ch, CURLOPT_URL, "https://dvlp.bpjs-kesehatan.go.id/vclaim-rest-1.1/Peserta/nik/" . $_POST['input'] . "/tglSEP/" . $tgl);
+		curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 		curl_setopt($ch, CURLOPT_TIMEOUT, 3);
 		curl_setopt($ch, CURLOPT_HTTPGET, 1);
@@ -84,6 +91,36 @@ class Vclaim extends CI_Controller
 		curl_close($ch);
 
 		echo $content;
+	}
+
+	public function stringDecrypt()
+	{
+		// $string = $_POST['string'];
+		$string = $_POST['string'];
+		// $string = !empty($_POST['string']) ? $_POST['string'] : '';
+		$data = "23396";
+		$secretKey = "2uV7D5A77E";
+
+		date_default_timezone_set('UTC');
+		$tStamp = strval(time() - strtotime('1970-01-01 00:00:00'));
+
+		$key = '' . $data . '' . $secretKey . '' . $tStamp . '';
+
+		$encrypt_method = 'AES-256-CBC';
+
+		// hash
+		$key_hash = hex2bin(hash('sha256', $key));
+
+		// iv - encrypt method AES-256-CBC expects 16 bytes - else you will get a warning
+		$iv = substr(hex2bin(hash('sha256', $key)), 0, 16);
+
+		$output = openssl_decrypt(base64_decode($string), $encrypt_method, $key_hash, OPENSSL_RAW_DATA, $iv);
+
+		$output2  = \LZCompressor\LZString::decompressFromEncodedURIComponent($output);
+
+		echo $output2;
+
+		// echo $string;
 	}
 
 	public function cariRujukanDenganNoBPJS()
