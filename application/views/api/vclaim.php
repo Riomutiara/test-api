@@ -13,13 +13,6 @@
         </button>
       </div>
       <br>
-      <div class="container">
-        <strong>Nama</strong> : <p id="nama_peserta"></p>
-        <strong>NIK</strong> : <p id="nik_peserta"></p>
-        <strong>Tgl. Lahir</strong> : <p id="tanggal_lahir"></p>
-        <strong>Status</strong> :<p id="status_peserta" class="text-danger"></p>
-        <strong>Jenis Peserta</strong> :<p id="jenis_peserta"></p>
-      </div>
     </div>
     <hr>
     <div class="col-md-8">
@@ -35,13 +28,6 @@
         </button>
       </div>
       <br>
-      <div class="container">
-        <strong>Nama</strong> : <p id="nama_peserta"></p>
-        <strong>NIK</strong> : <p id="nik_peserta"></p>
-        <strong>Tgl. Lahir</strong> : <p id="tanggal_lahir"></p>
-        <strong>Status</strong> :<p id="status_peserta" class="text-danger"></p>
-        <strong>Jenis Peserta</strong> :<p id="jenis_peserta"></p>
-      </div>
     </div>
     <hr>
     <div class="col-md-8">
@@ -58,13 +44,6 @@
         </button>
       </div>
       <br>
-      <div class="container">
-        <strong>Nama</strong> : <p id="nama_peserta"></p>
-        <strong>NIK</strong> : <p id="nik_peserta"></p>
-        <strong>Tgl. Lahir</strong> : <p id="tanggal_lahir"></p>
-        <strong>Status</strong> :<p id="status_peserta" class="text-danger"></p>
-        <strong>Jenis Peserta</strong> :<p id="jenis_peserta"></p>
-      </div>
     </div>
     <hr>
     <div class="col-md-8">
@@ -79,13 +58,6 @@
         </button>
       </div>
       <br>
-      <div class="container">
-        <strong>Nama</strong> : <p id="nama_peserta"></p>
-        <strong>NIK</strong> : <p id="nik_peserta"></p>
-        <strong>Tgl. Lahir</strong> : <p id="tanggal_lahir"></p>
-        <strong>Status</strong> :<p id="status_peserta" class="text-danger"></p>
-        <strong>Jenis Peserta</strong> :<p id="jenis_peserta"></p>
-      </div>
     </div>
   </div>
   <hr />
@@ -107,15 +79,20 @@
         dataType: 'JSON',
         success: function(data) {
           if (data.metaData['code'] == "200") {
-            // let peserta = data.response['peserta'];
-            // let status = peserta['statusPeserta'];
-            // let jenis = peserta['jenisPeserta'];
             console.log(data);
-            // $('#nama_peserta').text(peserta['nama']);
-            // $('#nik_peserta').text(peserta['nik']);
-            // $('#tanggal_lahir').text(peserta['tglLahir']);
-            // $('#status_peserta').text(status['keterangan']);
-            // $('#jenis_peserta').text(jenis['keterangan']);
+            var aaa = data.response;
+            setInterval(5000);
+            $.ajax({
+              url: "<?php echo base_url(); ?>vclaim/stringDecrypt",
+              method: "POST",
+              data: {
+                string: aaa
+              },
+              dataType: 'JSON',
+              success: function(data) {
+                console.log(data);
+              }
+            });
           } else {
             alert('Data Kepesertaan tidak ditemukan!')
           }
@@ -135,15 +112,7 @@
         dataType: 'JSON',
         success: function(data) {
           if (data.metaData['code'] == "200") {
-            // let peserta = data.response['peserta'];
-            // let status = peserta['statusPeserta'];
-            // let jenis = peserta['jenisPeserta'];
             console.log(data);
-            // $('#nama_peserta').text(peserta['nama']);
-            // $('#nik_peserta').text(peserta['nik']);
-            // $('#tanggal_lahir').text(peserta['tglLahir']);
-            // $('#status_peserta').text(status['keterangan']);
-            // $('#jenis_peserta').text(jenis['keterangan']);
           } else {
             alert('Data Kepesertaan tidak ditemukan!')
           }
@@ -163,16 +132,21 @@
         },
         dataType: 'JSON',
         success: function(data) {
-            console.log(data);
           if (data.metaData['code'] == "200") {
-            // let peserta = data.response['peserta'];
-            // let status = peserta['statusPeserta'];
-            // let jenis = peserta['jenisPeserta'];
-            // $('#nama_peserta').text(peserta['nama']);
-            // $('#nik_peserta').text(peserta['nik']);
-            // $('#tanggal_lahir').text(peserta['tglLahir']);
-            // $('#status_peserta').text(status['keterangan']);
-            // $('#jenis_peserta').text(jenis['keterangan']);
+            // console.log(data);
+            var aaa = data.response;
+
+            $.ajax({
+              url: "<?php echo base_url(); ?>vclaim/stringDecrypt",
+              method: "POST",
+              data: {
+                string: aaa
+              },
+              dataType: 'JSON',
+              success: function(data) {
+                console.log(data);
+              }
+            });
           } else {
             alert('Data Kepesertaan tidak ditemukan!')
           }
@@ -191,15 +165,7 @@
         dataType: 'JSON',
         success: function(data) {
           if (data.metaData['code'] == "200") {
-            // let peserta = data.response['peserta'];
-            // let status = peserta['statusPeserta'];
-            // let jenis = peserta['jenisPeserta'];
             console.log(data);
-            // $('#nama_peserta').text(peserta['nama']);
-            // $('#nik_peserta').text(peserta['nik']);
-            // $('#tanggal_lahir').text(peserta['tglLahir']);
-            // $('#status_peserta').text(status['keterangan']);
-            // $('#jenis_peserta').text(jenis['keterangan']);
           } else {
             alert('Data Kepesertaan tidak ditemukan!')
           }
@@ -221,15 +187,7 @@
         dataType: 'JSON',
         success: function(data) {
           if (data.metaData['code'] == "200") {
-            // let peserta = data.response['peserta'];
-            // let status = peserta['statusPeserta'];
-            // let jenis = peserta['jenisPeserta'];
             console.log(data);
-            // $('#nama_peserta').text(peserta['nama']);
-            // $('#nik_peserta').text(peserta['nik']);
-            // $('#tanggal_lahir').text(peserta['tglLahir']);
-            // $('#status_peserta').text(status['keterangan']);
-            // $('#jenis_peserta').text(jenis['keterangan']);
           } else {
             alert('Data Kepesertaan tidak ditemukan!')
           }
@@ -253,15 +211,7 @@
         dataType: 'JSON',
         success: function(data) {
           if (data.metaData['code'] == "200") {
-            // let peserta = data.response['peserta'];
-            // let status = peserta['statusPeserta'];
-            // let jenis = peserta['jenisPeserta'];
             console.log(data);
-            // $('#nama_peserta').text(peserta['nama']);
-            // $('#nik_peserta').text(peserta['nik']);
-            // $('#tanggal_lahir').text(peserta['tglLahir']);
-            // $('#status_peserta').text(status['keterangan']);
-            // $('#jenis_peserta').text(jenis['keterangan']);
           } else {
             alert('Data Kepesertaan tidak ditemukan!')
           }
